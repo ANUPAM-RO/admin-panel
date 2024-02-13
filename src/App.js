@@ -1,12 +1,13 @@
-import logo from "./logo.svg";
 import "./App.css";
-import SideBar from "./components/SideBar";
+import Layout from "./Layout";
+import Dashboard from "./components/Dashboard";
 
 function App() {
   return (
-    <div className="App">
-      <SideBar />
-    </div>
+    <Layout>
+      {/* You can put your page content component here */}
+      <Dashboard />
+    </Layout>
   );
 }
 
