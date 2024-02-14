@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const SideBar = () => {
   return (
@@ -17,49 +18,49 @@ const SideBar = () => {
           </div>
           <ul className="space-y-2 font-medium">
             <li>
-              <a
-                href="#"
+              <Link
+                to="/"
                 className="flex items-center p-2  rounded-lg dark:text-white  dark:hover:bg-gray-700 group"
               >
                 <img src="./bxs_dashboard.svg" alt="" />
                 <span className="ms-3">Dashboard</span>
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                to="/user"
                 className="flex items-center p-2  rounded-lg dark:text-white  dark:hover:bg-gray-700 group"
               >
                 <img src="./mdi_user.svg" alt="" />
                 <span className="ms-3">User List</span>
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                to="/category"
                 className="flex items-center p-2  rounded-lg dark:text-white  dark:hover:bg-gray-700 group"
               >
                 <img src="./mdi_cart.svg" alt="" />
                 <span className="ms-3">Category</span>
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                to="/sub-category"
                 className="flex items-center p-2  rounded-lg dark:text-white  dark:hover:bg-gray-700 group"
               >
                 <img src="./dashicons_category.svg" alt="" />
                 <span className="ms-3">Sub- Category</span>
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                to="/product"
                 className="flex items-center p-2  rounded-lg dark:text-white  dark:hover:bg-gray-700 group"
               >
                 <img src="./mdi_cart.svg" alt="" />
                 <span className="ms-3">Product</span>
-              </a>
+              </Link>
             </li>
             <li>
               <a
