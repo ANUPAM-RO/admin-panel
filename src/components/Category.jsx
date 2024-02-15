@@ -17,7 +17,7 @@ const Category = () => {
     <>
       <div className="relative overflow-x-auto shadow-md p-4">
         <div className="flex justify-between mb-4">
-          <p className="text-lg font-bold">All Category’s (Total : 06)</p>
+          <p className="text-lg font-bold">All Category’s (Total : {categoryData?.length})</p>
           <div className="flex gap-6">
             <button
               type="button"
