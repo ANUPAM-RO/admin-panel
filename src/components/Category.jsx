@@ -1,6 +1,9 @@
 import React from "react";
+import { useCategory } from "../hooks/useCategory";
 
 const Category = () => {
+    const { categoryData } = useCategory();
+    
   return (
     <div className="relative overflow-x-auto shadow-md p-4">
       <div className="flex justify-between mb-4">
@@ -35,21 +38,25 @@ const Category = () => {
           </tr>
         </thead>
         <tbody>
-          <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-            <th
-              scope="row"
-              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-            >
-              1
-            </th>
-            <td className="px-6 py-4">Silver</td>
-            <td className="px-6 py-4">Laptop</td>
+          {categoryData?.map((data, index) => (
+            <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+              <th
+                scope="row"
+                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+              >
+                #{index + 1}
+              </th>
+              <td className="px-6 py-4">
+                <img src={data?.image} alt="" style={{height:"95px", width:"95px"}} />
+              </td>
+              <td className="px-6 py-4 font-semibold text-gray-900">{data?.name}</td>
 
-            <td className="flex justify-end gap-8 py-4">
-              <img src="./Group 8.svg" alt="" className="cursor-pointer" />
-              <img src="./Group 60.svg" alt="" className="cursor-pointer" />
-            </td>
-          </tr>
+              <td className="flex justify-end gap-8 py-4">
+                <img src="./Group 8.svg" alt="" className="cursor-pointer" />
+                <img src="./Group 60.svg" alt="" className="cursor-pointer" />
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

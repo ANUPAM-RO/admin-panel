@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import Searchbar from "./Searchbar";
+import { useProduct } from "../hooks/useProduct";
 
 const Product = () => {
-  const [activeLink, setActiveLink] = useState(null);
-
+  const [activeLink, setActiveLink] = useState(0);
   const handleLinkClick = (index) => {
     setActiveLink(index);
   };
+
+  const { productData } = useProduct();
 
   return (
     <div className="relative overflow-x-auto shadow-md p-4">
@@ -64,25 +66,25 @@ const Product = () => {
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead style={{ color: "#121212" }} className="border-b">
           <tr>
-            <th scope="col" class="px-6 py-3">
+            <th scope="col" className="px-6 py-3">
               S.no
             </th>
-            <th scope="col" class="px-6 py-3">
+            <th scope="col" className="px-6 py-3">
               Image
             </th>
-            <th scope="col" class="px-6 py-3">
+            <th scope="col" className="px-6 py-3">
               Name
             </th>
-            <th scope="col" class="px-6 py-3">
+            <th scope="col" className="px-6 py-3">
               MRP
             </th>
-            <th scope="col" class="px-6 py-3">
+            <th scope="col" className="px-6 py-3">
               Stock
             </th>
-            <th scope="col" class="px-6 py-3">
+            <th scope="col" className="px-6 py-3">
               Credited
             </th>
-            <th scope="col" class="px-6 py-3">
+            <th scope="col" className="px-6 py-3">
               Invoice
             </th>
             <th scope="col" className="px-6 py-3">
@@ -91,38 +93,43 @@ const Product = () => {
           </tr>
         </thead>
         <tbody>
-          <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-            <th
-              scope="row"
-              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+          {productData?.map((data, index) => (
+            <tr
+              key={index}
+              className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
             >
-              1
-            </th>
-            <td className="px-6 py-4">
-              <img
-                src="./Group 48095855.svg"
-                alt=""
-                className="cursor-pointer"
-              />
-            </td>
-            <td className="px-6 py-4">Laptop</td>
-            <td className="px-6 py-4">Laptop</td>
-            <td className="px-6 py-4">Laptop</td>
-            <td className="px-6 py-4">Laptop</td>
-            <td className="px-6 py-4">
-              <img
-                src="./Group 48095855.svg"
-                alt=""
-                className="cursor-pointer"
-              />
-            </td>
+              <th
+                scope="row"
+                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+              >
+                #{index + 1}
+              </th>
+              <td className="px-4 py-2">
+                <img
+                  src={data?.images[0]?.img}
+                  alt=""
+                  style={{ height: "60px", width: "60px" }}
+                />
+              </td>
+              <td className="px-6 py-4 max-w-32">{data?.name}</td>
+              <td className="px-6 py-4">{data?.price}</td>
+              <td className="px-6 py-4">{data?.Stock}</td>
+              <td className="px-6 py-4 max-w-32">{data?.createdAt}</td>
+              <td className="px-6 py-4">
+                <img
+                  src="./Group 48095855.svg"
+                  alt=""
+                  className="cursor-pointer"
+                />
+              </td>
 
-            <td className="flex justify-end gap-4 py-4">
-              <img src="./Group 60.svg" alt="" className="cursor-pointer" />
-              <img src="./Group 76.svg" alt="" className="cursor-pointer" />
-              <img src="./Group 8.svg" alt="" className="cursor-pointer" />
-            </td>
-          </tr>
+              <td className="flex justify-end gap-4 py-4">
+                <img src="./Group 60.svg" alt="" className="cursor-pointer" />
+                <img src="./Group 76.svg" alt="" className="cursor-pointer" />
+                <img src="./Group 8.svg" alt="" className="cursor-pointer" />
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

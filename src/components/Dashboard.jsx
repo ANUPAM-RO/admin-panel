@@ -1,35 +1,43 @@
 import React from "react";
 import Box from "./Box";
+import { useCategory } from "../hooks/useCategory";
+import { useProduct } from "../hooks/useProduct";
+import { useSubCategory } from "../hooks/useSubCategory";
+import { useUser } from "../hooks/useUser";
 
 const Dashboard = () => {
+  const { categoryData } = useCategory();
+  const { productData } = useProduct();
+  const { subCategoryData } = useSubCategory();
+  const { userData } = useUser();
   const data = [
     {
       name: "All Product",
-      total: 61,
+      total: productData?.length,
       image: "./Group 40.svg",
       color: "#3C335D",
     },
     {
       name: "All Category",
-      total: 11,
+      total: categoryData?.length,
       image: "./Group 52.svg",
       color: "#023B5B",
     },
     {
       name: "All  Sub- Category",
-      total: 18,
+      total: subCategoryData?.length,
       image: "./Group 46.svg",
       color: "#72909E",
     },
     {
       name: "All User",
-      total: 11,
+      total: userData?.length,
       image: "./Group 47.svg",
       color: "#2F6967",
     },
     {
       name: "All  Sub- Category",
-      total: 18,
+      total: subCategoryData?.length,
       image: "./Group 48.svg",
       color: "#04649B",
     },
