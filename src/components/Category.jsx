@@ -1,66 +1,59 @@
-import React from 'react'
+import React from "react";
 
 const Category = () => {
   return (
-    <div>
-      
+    <div className="relative overflow-x-auto shadow-md p-4">
+      <div className="flex justify-between mb-4">
+        <p className="text-lg font-bold">All Category’s (Total : 06)</p>
+        <div className="flex gap-6">
+          <button
+            type="button"
+            style={{ backgroundColor: "#047DCE" }}
+            className="text-white px-8 py-1"
+          >
+            Add Category
+          </button>
+        </div>
+      </div>
+      <hr className="mt-6" />
 
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <thead style={{color:"#121212"}}>
-            <tr>
-                <th scope="col" class="px-6 py-3">
-                    S.no
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Image
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Name
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    <span class="sr-only">Edit</span>
-                </th>
-            </tr>
+      <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead style={{ color: "#121212" }} className="border-b">
+          <tr>
+            <th scope="col" className="px-6 py-3">
+              S.no
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Image
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Name
+            </th>
+            <th scope="col" className="px-6 py-3">
+              <span className="sr-only">Edit</span>
+            </th>
+          </tr>
         </thead>
         <tbody>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Apple MacBook Pro 17"
-                </th>
-                <td class="px-6 py-4">
-                    Silver
-                </td>
-                <td class="px-6 py-4">
-                    Laptop
-                </td>
-                <td class="flex gap-8 py-4 text-right">
-                    <img src="./Group 8.svg" alt="" className='cursor-pointer'/>
-                   <img src="./Group 60.svg" alt="" className='cursor-pointer'/>
-                </td>
-            </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Microsoft Surface Pro
-                </th>
-                <td class="px-6 py-4">
-                    White
-                </td>
-                <td class="px-6 py-4">
-                    Laptop PC
-                </td>
-                <td class="flex gap-8 py-4 text-right">
-                    <img src="./Group 8.svg" alt="" className='cursor-pointer'/>
-                   <img src="./Group 60.svg" alt="" className='cursor-pointer'/>
-                </td>
-            </tr>
-         
+          <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <th
+              scope="row"
+              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+            >
+              1
+            </th>
+            <td className="px-6 py-4">Silver</td>
+            <td className="px-6 py-4">Laptop</td>
+
+            <td className="flex justify-end gap-8 py-4">
+              <img src="./Group 8.svg" alt="" className="cursor-pointer" />
+              <img src="./Group 60.svg" alt="" className="cursor-pointer" />
+            </td>
+          </tr>
         </tbody>
-    </table>
-</div>
-
+      </table>
     </div>
-  )
-}
+  );
+};
 
-export default Category
+export default Category;
