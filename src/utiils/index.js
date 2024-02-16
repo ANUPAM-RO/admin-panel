@@ -15,13 +15,21 @@ export const fetchApiData = async (url) => {
 export const createApiData = async (url, data) => {
   const header = {
     headers: {
-      Authorization: `Bearer ${token}`,
       "Access-Control-Allow-Origin": "*",
       "Content-Type": "application/json",
     },
   };
   try {
     const response = await axios.post(url, data, header);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
+export const updateApiData = async (url, data) => {
+  try {
+    const response = await axios.put(url, data);
     return response.data;
   } catch (error) {
     console.log(error);

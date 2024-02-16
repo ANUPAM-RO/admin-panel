@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
-import { createApiData, deleteApiData, fetchApiData } from "../utiils";
+import {
+  createApiData,
+  deleteApiData,
+  fetchApiData,
+  updateApiData,
+} from "../utiils";
 import { useNavigate, useParams } from "react-router-dom";
 
 export const useCategory = () => {
@@ -10,6 +15,7 @@ export const useCategory = () => {
   const [catImage, setCatImage] = useState("");
   const [isEdit, setIsEdit] = useState(false);
   const navigate = useNavigate();
+  const { catId } = useParams();
 
   const loadData = async () => {
     const data = await fetchApiData(
@@ -39,8 +45,15 @@ export const useCategory = () => {
     await deleteApiData(
       `https://chetan-project-backend.vercel.app/api/v1/catg/delete/category/${id}`
     );
+    alert("Remove category");
+    loadData();
   };
-  const handleUpdate = () => {
+  const handleUpdate = async () => {
+    await updateApiData(
+      `https://chetan-project-backend.vercel.app/api/v1/catg/update/${catId}`,
+      { catName, catImage }
+    );
+    loadData();
     setIsEdit(false);
     setShowModal(false);
     navigate("/category");
