@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { createApiData, fetchApiData } from "../utiils";
+import { createApiData, deleteApiData, fetchApiData } from "../utiils";
 import { useNavigate, useParams } from "react-router-dom";
 
 export const useCategory = () => {
@@ -35,7 +35,11 @@ export const useCategory = () => {
     setCatImage(data?.image);
     setShowModal(true);
   };
-  const handleDelete = () => {};
+  const handleDelete = async (id) => {
+    await deleteApiData(
+      `https://chetan-project-backend.vercel.app/api/v1/catg/delete/category/${id}`
+    );
+  };
   const handleUpdate = () => {
     setIsEdit(false);
     setShowModal(false);

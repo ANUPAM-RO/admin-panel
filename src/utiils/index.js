@@ -28,3 +28,13 @@ export const createApiData = async (url, data) => {
     return error;
   }
 };
+
+export const deleteApiData = async (url) => {
+  try {
+    const response = await axios.delete(url);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
