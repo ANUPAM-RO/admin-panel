@@ -9,15 +9,24 @@ const Category = () => {
     showModal,
     setShowModal,
     catName,
+    catImage,
+    isEdit,
+    setIsEdit,
     setCatName,
     setCatImage,
+    handleUpdate,
+    handleDelete,
+    isCategoryUpdate,
   } = useCategory();
+
 
   return (
     <>
       <div className="relative overflow-x-auto shadow-md p-4">
         <div className="flex justify-between mb-4">
-          <p className="text-lg font-bold">All Category’s (Total : {categoryData?.length})</p>
+          <p className="text-lg font-bold">
+            All Category’s (Total : {categoryData?.length})
+          </p>
           <div className="flex gap-6">
             <button
               type="button"
@@ -25,7 +34,11 @@ const Category = () => {
               className="text-white px-8 py-1"
               data-modal-target="crud-modal"
               data-modal-toggle="crud-modal"
-              onClick={() => setShowModal(true)}
+              onClick={() => {
+                setShowModal(true);
+                setCatName("");
+                setCatImage("");
+              }}
             >
               Add Category
             </button>
@@ -74,8 +87,18 @@ const Category = () => {
                 </td>
 
                 <td className="flex justify-end gap-8 py-4">
-                  <img src="./Group 8.svg" alt="" className="cursor-pointer" />
-                  <img src="./Group 60.svg" alt="" className="cursor-pointer" />
+                  <img
+                    src="./Group 8.svg"
+                    alt=""
+                    className="cursor-pointer"
+                    onClick={() => handleDelete(data?._id)}
+                  />
+                  <img
+                    src="./Group 60.svg"
+                    alt=""
+                    className="cursor-pointer"
+                    onClick={() => isCategoryUpdate(data)}
+                  />
                 </td>
               </tr>
             ))}
@@ -83,7 +106,12 @@ const Category = () => {
         </table>
       </div>
       {showModal && (
-        <Modal setShowModal={setShowModal} name="Create New Category">
+        <Modal
+          setShowModal={setShowModal}
+          name={isEdit ? "Edit Category" : "Create New Category"}
+          isEdit={isEdit}
+          setIsEdit={setIsEdit}
+        >
           <div className="flex flex-col gap-4">
             <div className="flex flex-col gap-2">
               <label className="font-semibold">Name</label>
@@ -107,7 +135,7 @@ const Category = () => {
                 className="text-white font-bold uppercase text-sm px-6 py-3  shadow outline-none focus:outline-none mr-1 mb-1"
                 type="button"
                 style={{ backgroundColor: "#047DCE" }}
-                onClick={handleNewCategory}
+                onClick={isEdit ? handleUpdate : handleNewCategory}
               >
                 Submit
               </button>
