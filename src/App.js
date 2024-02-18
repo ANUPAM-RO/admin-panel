@@ -17,6 +17,7 @@ function App() {
         <Route path="/category" element={<Category />} />
         <Route path="/category/:catId" element={<Category />} />
         <Route path="/sub-category" element={<Subcategory />} />
+        <Route path="/sub-category/:subcatId" element={<Subcategory />} />
         <Route path="/product" element={<Product />} />
       </Routes>
     </Layout>

@@ -15,7 +15,7 @@ const Modal = (props) => {
                 onClick={() => {
                   props.setShowModal(false);
                   props.setIsEdit(false);
-                  navigate('/category')
+                 {props.isCategory ?  navigate('/category') :  navigate('/sub-category')}
                 }}
               >
                 <img src={props.isEdit ?  "../Vector.svg" : "./Vector.svg"} alt="" className="w-10 h-6" />

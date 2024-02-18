@@ -13,14 +13,8 @@ export const fetchApiData = async (url) => {
 };
 
 export const createApiData = async (url, data) => {
-  const header = {
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Content-Type": "application/json",
-    },
-  };
   try {
-    const response = await axios.post(url, data, header);
+    const response = await axios.post(url, data);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -45,4 +39,28 @@ export const deleteApiData = async (url) => {
     console.log(error);
     return error;
   }
+};
+
+// upload image in cloudinary
+export const uploadImage = (image) => {
+  return new Promise((resolve, reject) => {
+    let apiUrl = "https://api.cloudinary.com/v1_1/dab6e1ngo/image/upload";
+    const data = new FormData();
+    data.append("file", image);
+    data.append("upload_preset", "admin-panel");
+
+    fetch(apiUrl, {
+      body: data,
+      method: "post",
+    })
+      .then(async (response) => {
+        const responseData = await response.json();
+        const imageUrl = responseData.url;
+        resolve(imageUrl);
+      })
+      .catch((err) => {
+        console.log(err);
+        reject("Cannot upload");
+      });
+  });
 };
