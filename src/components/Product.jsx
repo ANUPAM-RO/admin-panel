@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import Searchbar from "./Searchbar";
 import { useProduct } from "../hooks/useProduct";
+import { useNavigate } from "react-router-dom";
 
 const Product = () => {
   const [activeLink, setActiveLink] = useState(0);
   const handleLinkClick = (index) => {
     setActiveLink(index);
   };
+
+  const navigate = useNavigate()
 
   const { productData } = useProduct();
 
@@ -26,6 +29,7 @@ const Product = () => {
             type="button"
             style={{ backgroundColor: "#047DCE" }}
             className="text-white px-8 py-1"
+            onClick={()=> navigate('/new-product')}
           >
             Create New
           </button>

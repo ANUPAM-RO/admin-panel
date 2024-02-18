@@ -6,6 +6,7 @@ import User from "./components/User";
 import Category from "./components/Category";
 import Subcategory from "./components/Subcategory";
 import Product from "./components/Product";
+import ProductForm from "./components/ProductForm";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/sub-category" element={<Subcategory />} />
         <Route path="/sub-category/:subcatId" element={<Subcategory />} />
         <Route path="/product" element={<Product />} />
+        <Route path="/new-product" element={<ProductForm />} />
       </Routes>
     </Layout>
   );

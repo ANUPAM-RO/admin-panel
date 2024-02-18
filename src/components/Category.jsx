@@ -127,7 +127,7 @@ const Category = () => {
               <label className="font-semibold">Image</label>
               <input
                 type="file"
-                className="flex-1"
+                className="flex-1 border border-gray-300"
                 onChange={(e) => setCatImage(e.target.files[0])}
               />
             </div>
