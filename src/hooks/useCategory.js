@@ -9,10 +9,9 @@ import { useNavigate, useParams } from "react-router-dom";
 
 export const useCategory = () => {
   const [categoryData, setCategoryData] = useState([]);
-  const [newCategoryData, setNewCategoryData] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [catName, setCatName] = useState("");
-  const [catImage, setCatImage] = useState("");
+  const [catImage, setCatImage] = useState(null);
   const [isEdit, setIsEdit] = useState(false);
   const navigate = useNavigate();
   const { catId } = useParams();
@@ -23,16 +22,21 @@ export const useCategory = () => {
     );
     setCategoryData(data.categories);
   };
+
   const createNewData = async (newCategoryData) => {
-    const data = await createApiData(
+    await createApiData(
       "https://chetan-project-backend.vercel.app/api/v1/catg/create",
       newCategoryData
     );
   };
 
-  const handleNewCategory = () => {
-    createNewData({ catName, catImage });
+  const handleNewCategory = async () => {
+    await createNewData({
+      name: catName,
+      image: catImage,
+    });
     setShowModal(false);
+    loadData();
   };
   const isCategoryUpdate = (data) => {
     setIsEdit(true);
@@ -41,6 +45,7 @@ export const useCategory = () => {
     setCatImage(data?.image);
     setShowModal(true);
   };
+
   const handleDelete = async (id) => {
     await deleteApiData(
       `https://chetan-project-backend.vercel.app/api/v1/catg/delete/category/${id}`
@@ -48,10 +53,11 @@ export const useCategory = () => {
     alert("Remove category");
     loadData();
   };
+
   const handleUpdate = async () => {
     await updateApiData(
       `https://chetan-project-backend.vercel.app/api/v1/catg/update/${catId}`,
-      { catName, catImage }
+      { name: catName, image: catImage }
     );
     loadData();
     setIsEdit(false);
@@ -66,7 +72,6 @@ export const useCategory = () => {
   }, []);
   return {
     categoryData,
-    setNewCategoryData,
     showModal,
     setShowModal,
     catName,
