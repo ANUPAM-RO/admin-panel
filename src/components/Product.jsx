@@ -9,9 +9,9 @@ const Product = () => {
     setActiveLink(index);
   };
 
-  const navigate = useNavigate()
 
-  const { productData } = useProduct();
+
+  const { productData , handelOpenNewProduct } = useProduct();
 
   return (
     <div className="relative overflow-x-auto shadow-md p-4">
@@ -29,7 +29,7 @@ const Product = () => {
             type="button"
             style={{ backgroundColor: "#047DCE" }}
             className="text-white px-8 py-1"
-            onClick={()=> navigate('/new-product')}
+            onClick={handelOpenNewProduct}
           >
             Create New
           </button>
