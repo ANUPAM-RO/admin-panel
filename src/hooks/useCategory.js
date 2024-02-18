@@ -30,11 +30,12 @@ export const useCategory = () => {
     );
   };
 
-  const handleNewCategory = async () => {
-    await createNewData({
-      name: catName,
-      image: catImage,
-    });
+  const handleNewCategory = async (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append("name", catName);
+    formData.append("image", catImage);
+    await createNewData(formData);
     setShowModal(false);
     loadData();
   };
@@ -54,10 +55,14 @@ export const useCategory = () => {
     loadData();
   };
 
-  const handleUpdate = async () => {
+  const handleUpdate = async (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append("name", catName);
+    formData.append("image", catImage);
     await updateApiData(
       `https://chetan-project-backend.vercel.app/api/v1/catg/update/${catId}`,
-      { name: catName, image: catImage }
+      formData
     );
     loadData();
     setIsEdit(false);

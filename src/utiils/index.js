@@ -2,6 +2,12 @@ import axios from "axios";
 const token =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MDdmOTBmNGQ0MmU5NWYwZGI0N2U3MyIsImlhdCI6MTY5NTAyODI3MywiZXhwIjoxNjk1MTE0NjczfQ.WWkxRvJ-Gvf7-FH3Up6iksdzQuVuaSUVSOVVPg7ZLT8";
 
+const headers = {
+  headers: {
+    "Content-Type": "multipart/form-data",
+  },
+};
+
 export const fetchApiData = async (url) => {
   try {
     const response = await axios.get(url);
@@ -14,7 +20,7 @@ export const fetchApiData = async (url) => {
 
 export const createApiData = async (url, data) => {
   try {
-    const response = await axios.post(url, data);
+    const response = await axios.post(url, data, headers);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -23,7 +29,7 @@ export const createApiData = async (url, data) => {
 };
 export const updateApiData = async (url, data) => {
   try {
-    const response = await axios.put(url, data);
+    const response = await axios.put(url, data, headers);
     return response.data;
   } catch (error) {
     console.log(error);

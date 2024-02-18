@@ -56,7 +56,7 @@ export const useSubCategory = () => {
     setIsEdit(true);
     navigate(`${data?._id}`);
     setSubCat({
-      parentCategory: data?.parentCategory,
+      parentCategory: data?.parentCategory?._id,
       subCategory: data?.subCategory,
       image: data?.image,
     });
@@ -79,17 +79,26 @@ export const useSubCategory = () => {
     );
   };
 
-  const handleNewSubCategory = async () => {
-    console.log(subCat);
-    await createNewData(subCat);
+  const handleNewSubCategory = async (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append("parentCategory", subCat?.parentCategory);
+    formData.append("subCategory", subCat?.subCategory);
+    formData.append("image", subCat?.image);
+    await createNewData(formData);
     setShowModal(false);
     loadData();
   };
 
-  const handleUpdate = async () => {
+  const handleUpdate = async (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append("parentCategory", subCat?.parentCategory);
+    formData.append("subCategory", subCat?.subCategory);
+    formData.append("image", subCat?.image);
     await updateApiData(
       `https://chetan-project-backend.vercel.app/api/v1/catg/update/sub/${subcatId}`,
-      subCat
+      formData
     );
     loadData();
     setIsEdit(false);
