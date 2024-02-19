@@ -111,7 +111,7 @@ const Category = () => {
           name={isEdit ? "Edit Category" : "Create New Category"}
           isEdit={isEdit}
           setIsEdit={setIsEdit}
-          isCategory={false}
+          isCategory={true}
         >
           <div className="flex flex-col gap-4">
             <div className="flex flex-col gap-2">

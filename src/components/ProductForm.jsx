@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useProduct } from "../hooks/useProduct";
+import { fetchApiData } from "../utiils";
+import { useParams } from "react-router-dom";
 
 const ProductForm = () => {
   const {
@@ -12,8 +14,31 @@ const ProductForm = () => {
     subCategoryData,
     navigate,
     isEdit,
+    setProduct,
+    setIsEdit
   } = useProduct();
-  console.log(product);
+  let { prodId } = useParams();
+
+  const loadProduct = async () => {
+    if (!prodId) return;
+    const data = await fetchApiData(
+      `https://chetan-project-backend.vercel.app/api/v1/product/${prodId}`
+    );
+
+    setIsEdit(true);
+      setProduct({
+      ...data.product,
+      stock: data?.product?.Stock,
+      subCategory: data?.product?.subCategory?._id,
+      images: data?.product?.images[0]?.img,
+    });
+  };
+
+  useEffect(() => {
+    loadProduct()
+  },[prodId])
+
+
   return (
     <div>
       <p className="font-bold text-xl pb-4">
@@ -179,7 +204,9 @@ const ProductForm = () => {
           type="button"
           style={{ backgroundColor: "#047DCE", color: "#FFFFFF" }}
           className="text-white px-8 py-1"
-          onClick={() => navigate("/product")}
+          onClick={() => {
+            navigate("/product")
+          }}
         >
           Back
         </button>

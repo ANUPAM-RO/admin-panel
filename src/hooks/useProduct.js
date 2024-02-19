@@ -55,6 +55,7 @@ export const useProduct = () => {
 
   const handelOpenNewProduct = async () => {
     navigate("/new-product");
+    setIsEdit(false);
   };
 
   const handleNewProduct = async (event) => {
@@ -90,18 +91,7 @@ export const useProduct = () => {
   };
 
   const handleIsEdit = async (data) => {
-    // const prodData = await fetchApiData(
-    //   `https://chetan-project-backend.vercel.app/api/v1/product/${data?._id}`
-    // );
-    // console.log("data", prodData);
-    setProduct({
-      ...data,
-      stock: data?.Stock,
-      subCategory: data?.subCategory?._id,
-      images: data?.images[0]?.img,
-    });
-    setIsEdit(true);
-    navigate(`${data?._id}`);
+    navigate(`/edit-product/${data?._id}`);
   };
 
   const handleUpdate = async (event) => {
@@ -149,6 +139,7 @@ export const useProduct = () => {
     loadCatData();
     loadSubCatData();
   }, []);
+
   return {
     productData,
     product,
