@@ -3,7 +3,7 @@ import Searchbar from "./Searchbar";
 import { useUser } from "../hooks/useUser";
 
 const User = () => {
-  const { userData } = useUser();
+  const { userData , navigate } = useUser();
 
   return (
     <div className="relative overflow-x-auto shadow-md p-4">
@@ -21,6 +21,7 @@ const User = () => {
             type="button"
             style={{ backgroundColor: "#047DCE" }}
             className="text-white px-8 py-1"
+            onClick={()=> navigate('/new-user')}
           >
             Create New
           </button>
@@ -72,44 +73,44 @@ const User = () => {
             >
               <th
                 scope="row"
-                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                className="px-2 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
               >
                 #{index + 1}
               </th>
-              <td className="px-6 py-4 font-semibold text-gray-900">
+              <td className="px-2 py-4 font-semibold text-gray-900">
                 {data?.name}
               </td>
-              <td className="px-6 py-4 font-semibold text-gray-900">
+              <td className="px-2 py-4 font-semibold text-gray-900">
                 {data.phone}
               </td>
-              <td className="px-6 py-4 font-semibold text-gray-900">
+              <td className="px-2 py-4 font-semibold text-gray-900">
                 {data?.email}
               </td>
               <td
-                className="px-6 py-4 font-semibold"
+                className="px-2 py-4 font-semibold"
                 style={{ color: "#00AB7F" }}
               >
                 Prepaid
               </td>
-              <td className="px-6 py-4 font-semibold text-gray-900">
+              <td className="px-2 py-4 font-semibold text-gray-900">
                 {data?.createdAt}
               </td>
               <td
-                className="px-6 py-4 font-semibold"
+                className="px-2 py-4 font-semibold"
                 style={{ color: "#00AB7F" }}
               >
                 Active
               </td>
-              <td className="px-6 py-4">
+              <td className="px-2 py-4">
                 <button
                   type="button"
                   style={{ backgroundColor: "#047DCE" }}
-                  className="text-white px-6 py-1"
+                  className="text-white px-2 py-1"
                 >
                   Assign
                 </button>
               </td>
-              <td className="px-6 py-4">
+              <td className="px-2 py-4">
                 <button
                   type="button"
                   style={{ backgroundColor: "#047DCE" }}
@@ -118,7 +119,7 @@ const User = () => {
                   Accept
                 </button>
               </td>
-              <td className="flex py-4">
+              <td className="flex py-4 pl-4">
                 <img
                   src="./Group 48095855.svg"
                   alt=""
