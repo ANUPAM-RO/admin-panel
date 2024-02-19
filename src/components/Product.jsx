@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Searchbar from "./Searchbar";
 import { useProduct } from "../hooks/useProduct";
-import { useNavigate } from "react-router-dom";
 
 const Product = () => {
   const [activeLink, setActiveLink] = useState(0);
@@ -9,9 +8,7 @@ const Product = () => {
     setActiveLink(index);
   };
 
-
-
-  const { productData , handelOpenNewProduct } = useProduct();
+  const { productData , handleIsEdit, handelOpenNewProduct , handleDelete  } = useProduct();
 
   return (
     <div className="relative overflow-x-auto shadow-md p-4">
@@ -128,9 +125,9 @@ const Product = () => {
               </td>
 
               <td className="flex justify-end gap-4 py-4">
-                <img src="./Group 60.svg" alt="" className="cursor-pointer" />
+                <img src="./Group 60.svg" alt="" className="cursor-pointer" onClick={()=>handleIsEdit(data)}/>
                 <img src="./Group 76.svg" alt="" className="cursor-pointer" />
-                <img src="./Group 8.svg" alt="" className="cursor-pointer" />
+                <img src="./Group 8.svg" alt="" className="cursor-pointer" onClick={()=> handleDelete(data?._id)}/>
               </td>
             </tr>
           ))}

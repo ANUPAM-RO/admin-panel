@@ -4,26 +4,30 @@ import { useProduct } from "../hooks/useProduct";
 const ProductForm = () => {
   const {
     product,
-    setProduct,
-    handleNewCategory,
+    handleNewProduct,
     handleChange,
     handleImageChange,
+    handleUpdate,
     categoryData,
     subCategoryData,
+    navigate,
+    isEdit,
   } = useProduct();
-  console.log(categoryData, subCategoryData);
+  console.log(product);
   return (
     <div>
-      <p className="font-bold text-xl">Create New Product</p>
-      {/* {product?.image && (
+      <p className="font-bold text-xl pb-4">
+        {isEdit ? "Edit Product" : "Create New Product"}
+      </p>
+      {isEdit && (
         <div className="flex justify-center">
           <img
-            src={product?.image}
+            src={product?.images}
             alt=""
             style={{ width: "240px", height: "240px" }}
           />
         </div>
-      )} */}
+      )}
 
       <div className="flex flex-col gap-3">
         <div className="flex flex-col gap-2">
@@ -31,7 +35,7 @@ const ProductForm = () => {
           <input
             type="file"
             className="border border-gray-300"
-            name="image"
+            name="images"
             onChange={handleImageChange}
           />
         </div>
@@ -85,12 +89,12 @@ const ProductForm = () => {
             id="parentCategory"
             name="type"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm "
-            value={product.type}
+            value={product?.type}
             onChange={handleChange}
           >
-            <option value="Subcribe">Subcribe</option>
-            <option value="Buyone">Buyone</option>
-            <option value="Both">Both</option>
+            <option value="subcribe">Subcribe</option>
+            <option value="buyone">Buyone</option>
+            <option value="both">Both</option>
           </select>
         </div>
 
@@ -123,7 +127,7 @@ const ProductForm = () => {
             id="subCategory"
             name="subCategory"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm "
-            value={product.subCategory}
+            value={product?.subCategory}
             onChange={handleChange}
           >
             <option disabled selected>
@@ -167,9 +171,7 @@ const ProductForm = () => {
           type="button"
           style={{ backgroundColor: "#00AB7F", color: "#FFFFFF" }}
           className="text-white px-8 py-1"
-          onClick={(e) => {
-            handleNewCategory(e);
-          }}
+          onClick={!isEdit ? handleUpdate : handleNewProduct}
         >
           Submit
         </button>
@@ -177,7 +179,7 @@ const ProductForm = () => {
           type="button"
           style={{ backgroundColor: "#047DCE", color: "#FFFFFF" }}
           className="text-white px-8 py-1"
-          // onClick={()=> navigate('/new-product')}
+          onClick={() => navigate("/product")}
         >
           Back
         </button>

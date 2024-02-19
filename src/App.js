@@ -7,6 +7,7 @@ import Category from "./components/Category";
 import Subcategory from "./components/Subcategory";
 import Product from "./components/Product";
 import ProductForm from "./components/ProductForm";
+import UserForm from "./components/UserForm";
 
 function App() {
   return (
@@ -15,11 +16,13 @@ function App() {
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/user" element={<User />} />
+        <Route path="/new-user" element={<UserForm />} />
         <Route path="/category" element={<Category />} />
         <Route path="/category/:catId" element={<Category />} />
         <Route path="/sub-category" element={<Subcategory />} />
         <Route path="/sub-category/:subcatId" element={<Subcategory />} />
         <Route path="/product" element={<Product />} />
+        <Route path="/product/:prodId" element={<ProductForm />} />
         <Route path="/new-product" element={<ProductForm />} />
       </Routes>
     </Layout>
