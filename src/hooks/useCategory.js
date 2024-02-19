@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { errorToast, successToast } from "../components/Toast";
 import {
   createApiData,
   deleteApiData,
@@ -28,6 +29,7 @@ export const useCategory = () => {
       "https://chetan-project-backend.vercel.app/api/v1/catg/create",
       newCategoryData
     );
+    successToast("New Category Create  Successfully!!!.");
   };
 
   const handleNewCategory = async (event) => {
@@ -51,7 +53,7 @@ export const useCategory = () => {
     await deleteApiData(
       `https://chetan-project-backend.vercel.app/api/v1/catg/delete/category/${id}`
     );
-    alert("Remove category");
+    errorToast("Remove category");
     loadData();
   };
 
@@ -64,6 +66,7 @@ export const useCategory = () => {
       `https://chetan-project-backend.vercel.app/api/v1/catg/update/${catId}`,
       formData
     );
+    successToast("New Category Edit  Successfully!!!.");
     loadData();
     setIsEdit(false);
     setShowModal(false);

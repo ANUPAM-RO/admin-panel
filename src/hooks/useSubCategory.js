@@ -6,6 +6,7 @@ import {
   updateApiData,
 } from "../utiils";
 import { useNavigate, useParams } from "react-router-dom";
+import { errorToast, successToast } from "../components/Toast";
 
 export const useSubCategory = () => {
   const [subCategoryData, setSubCategoryData] = useState([]);
@@ -77,6 +78,7 @@ export const useSubCategory = () => {
       "https://chetan-project-backend.vercel.app/api/v1/catg/subcategory",
       newSubCategoryData
     );
+    successToast("New SubCategory Create  Successfully!!!.");
   };
 
   const handleNewSubCategory = async (event) => {
@@ -103,6 +105,7 @@ export const useSubCategory = () => {
     loadData();
     setIsEdit(false);
     setShowModal(false);
+    successToast("New SubCategory Edited  Successfully!!!.");
     navigate("/sub-category");
     setSubCat({
       parentCategory: "",
@@ -115,7 +118,7 @@ export const useSubCategory = () => {
     await deleteApiData(
       `https://chetan-project-backend.vercel.app/api/v1/catg/delete/sub/category/${id}`
     );
-    alert("Remove sub category");
+    errorToast("Remove sub category");
     loadData();
   };
 

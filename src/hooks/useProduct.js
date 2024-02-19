@@ -6,6 +6,7 @@ import {
   updateApiData,
 } from "../utiils";
 import { useNavigate, useParams } from "react-router-dom";
+import { errorToast } from "../components/Toast";
 
 export const useProduct = () => {
   const [productData, setProductData] = useState([]);
@@ -130,7 +131,7 @@ export const useProduct = () => {
     await deleteApiData(
       `https://chetan-project-backend.vercel.app/api/v1/product/delete/${id}`
     );
-    alert("Remove Product");
+    errorToast("Remove Product");
     loadData();
   };
 
